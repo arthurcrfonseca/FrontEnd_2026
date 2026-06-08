@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Eventos</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 420px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #111827;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #111827;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #374151;
+        }
+
+        #resultado {
+            margin-top: 25px;
+            background-color: #f9fafb;
+            padding: 18px;
+            border-radius: 10px;
+            line-height: 1.9;
+            border: 1px solid #e5e7eb;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <h1>Infinity Eventos</h1>
+
+        <label>Escolha o Pacote</label>
+
+        <select id="pacote">
+            <option value="50">Standard - R$ 50,00</option>
+            <option value="80">Premium - R$ 80,00</option>
+            <option value="120">Infinity Deluxe - R$ 120,00</option>
+        </select>
+
+        <label>Quantidade de Pessoas</label>
+
+        <input type="number" id="quantidade" placeholder="Digite a quantidade">
+
+        <button id="calcular">Calcular Orçamento</button>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <script>
+
+        const botao = document.getElementById("calcular");
+
+        botao.addEventListener("click", function () {
+
+            const valorPacote = Number(document.getElementById("pacote").value);
+
+            const quantidade = Number(document.getElementById("quantidade").value);
+
+            const custoBruto = valorPacote * quantidade;
+
+            const taxaServico = custoBruto * 0.10;
+
+            const subtotal = custoBruto + taxaServico;
+
+            let desconto = 0;
+
+            if (quantidade > 100) {
+
+                desconto = subtotal * 0.05;
+
+            }
+
+            const totalFinal = subtotal - desconto;
+
+            const resultado = document.getElementById("resultado");
+
+            resultado.innerHTML = `
+            
+                <strong>Resumo do Evento</strong><br><br>
+
+                Custo Bruto: R$ ${custoBruto.toFixed(2)} <br>
+
+                Taxa de Serviço (10%): R$ ${taxaServico.toFixed(2)} <br>
+
+                Desconto Aplicado: R$ ${desconto.toFixed(2)} <br>
+
+                <span class="total">
+                    Total Final: R$ ${totalFinal.toFixed(2)}
+                </span>
+            
+            `;
+
+        });
+
+    </script>
+
+</body>
+</html>
