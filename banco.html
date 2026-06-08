@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #111827;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #374151;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            background-color: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Infinity Bank</h1>
+
+        <label>Bandeira do Cartão</label>
+        <select id="bandeira">
+            <option value="visa">Visa</option>
+            <option value="master">Master</option>
+            <option value="elo">Elo</option>
+        </select>
+
+        <label>Valor da Compra</label>
+        <input type="number" id="valor" placeholder="Digite o valor">
+
+        <label>Número de Parcelas</label>
+        <input type="number" id="parcelas" placeholder="Digite a quantidade">
+
+        <button id="calcular">Simular Venda</button>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <script>
+
+        const botao = document.getElementById("calcular");
+
+        botao.addEventListener("click", function () {
+
+            const bandeira = document.getElementById("bandeira").value;
+
+            const valor = Number(document.getElementById("valor").value);
+
+            const parcelas = Number(document.getElementById("parcelas").value);
+
+            let taxaBandeira = 0;
+
+            switch (bandeira) {
+
+                case "visa":
+                    taxaBandeira = 0.02;
+                    break;
+
+                case "master":
+                    taxaBandeira = 0.0185;
+                    break;
+
+                case "elo":
+                    taxaBandeira = 0.03;
+                    break;
+            }
+
+            const valorTaxa = valor * taxaBandeira;
+
+            const juros = valor * (0.0035 * parcelas);
+
+            const taxaMensal = 12.50 * parcelas;
+
+            const valorFinal = valor + valorTaxa + juros + taxaMensal;
+
+            const valorParcela = valorFinal / parcelas;
+
+            const resultado = document.getElementById("resultado");
+
+            resultado.innerHTML = `
+                <strong>Resumo da Venda</strong><br><br>
+
+                Bandeira: ${bandeira.toUpperCase()} <br>
+
+                Valor da Compra: R$ ${valor.toFixed(2)} <br>
+
+                Valor da Taxa: R$ ${valorTaxa.toFixed(2)} <br>
+
+                Valor dos Juros: R$ ${juros.toFixed(2)} <br>
+
+                Taxa Mensal Total: R$ ${taxaMensal.toFixed(2)} <br>
+
+                Valor Final: R$ ${valorFinal.toFixed(2)} <br>
+
+                Valor de Cada Parcela: R$ ${valorParcela.toFixed(2)}
+            `;
+        });
+
+    </script>
+
+</body>
+</html>
