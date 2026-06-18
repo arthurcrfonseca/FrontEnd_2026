@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupos da Copa do Mundo</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#e3f2fd,#ffffff);
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+    margin-bottom:30px;
+}
+
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+.card{
+    width:700px;
+    max-width:90%;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    color:#0055aa;
+    margin-bottom:10px;
+}
+
+.card ul{
+    padding-left:20px;
+    margin-bottom:10px;
+}
+
+.card li{
+    margin-bottom:5px;
+}
+
+details{
+    background:#f5f9ff;
+    padding:10px;
+    border-radius:8px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:bold;
+    color:#004c99;
+}
+
+.grupo-oculto{
+    display:none;
+}
+
+.botao-vermais{
+    display:block;
+    margin:30px auto;
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:#0066cc;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.botao-vermais:hover{
+    background:#004c99;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚽ Grupos da Copa do Mundo</h1>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Grupo A</h2>
+        <ul>
+            <li>México</li>
+            <li>África do Sul</li>
+            <li>Coreia do Sul</li>
+            <li>República Tcheca</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Grupo equilibrado com seleções de três continentes.</p>
+        </details>
+    </div>
+
+    <div class="card">
+        <h2>Grupo B</h2>
+        <ul>
+            <li>Canadá</li>
+            <li>Suíça</li>
+            <li>Catar</li>
+            <li>Bósnia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Canadá terá o apoio da torcida local.</p>
+        </details>
+    </div>
+
+    <div class="card">
+        <h2>Grupo C</h2>
+        <ul>
+            <li>Brasil</li>
+            <li>Marrocos</li>
+            <li>Haiti</li>
+            <li>Escócia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Brasil é considerado favorito do grupo.</p>
+        </details>
+    </div>
+
+    <div class="card grupo-oculto">
+        <h2>Grupo D</h2>
+        <ul>
+            <li>Estados Unidos</li>
+            <li>Paraguai</li>
+            <li>Austrália</li>
+            <li>Turquia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>EUA contam com o fator casa.</p>
+        </details>
+    </div>
+
+    <div class="card grupo-oculto">
+        <h2>Grupo E</h2>
+        <ul>
+            <li>Alemanha</li>
+            <li>Equador</li>
+            <li>Costa do Marfim</li>
+            <li>Curaçao</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Alemanha chega como favorita do grupo.</p>
+        </details>
+    </div>
+
+    <div class="card grupo-oculto">
+        <h2>Grupo F</h2>
+        <ul>
+            <li>Holanda</li>
+            <li>Japão</li>
+            <li>Tunísia</li>
+            <li>Suécia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Grupo com confrontos bastante equilibrados.</p>
+        </details>
+    </div>
+
+</div>
+
+<button class="botao-vermais" id="btnVerMais" onclick="verMais()">
+    Ver Mais
+</button>
+
+<script>
+function verMais() {
+    let grupos = document.querySelectorAll(".grupo-oculto");
+
+    grupos.forEach(function(grupo){
+        grupo.style.display = "block";
+    });
+
+    document.getElementById("btnVerMais").style.display = "none";
+}
+</script>
+
+</body>
+</html>
